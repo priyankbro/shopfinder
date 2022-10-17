@@ -1,6 +1,6 @@
-# Mage2 Module Priyank Shopfinder
+# Priyank Shopfinder
 
-    ``priyank/module-shopfinder``
+    `composer require priyank/shopfinder`
 
  - [Main Functionalities](#markdown-header-main-functionalities)
  - [Installation](#markdown-header-installation)
