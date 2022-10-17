@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="priyank_shopfinder_shopfinder" resource="default" engine="innodb" comment="priyank_shopfinder_shopfinder Table">
+		<column xsi:type="int" name="shopfinder_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="shopfinder_id"/>
+		</constraint>
+		<column name="shop_name" nullable="true" xsi:type="varchar" comment="shop_name" length="255"/>
+		<column name="identifier" nullable="true" xsi:type="varchar" comment="identifier" length="255"/>
+		<column name="address_1" nullable="true" xsi:type="text" comment="address_1"/>
+		<column name="city" nullable="true" xsi:type="text" comment="city"/>
+		<column name="country" nullable="true" xsi:type="text" comment="country"/>
+		<column name="state" nullable="true" xsi:type="text" comment="state"/>
+		<column name="postal_code" nullable="true" xsi:type="varchar" comment="postal_code" length="255"/>
+	</table>
+</schema>

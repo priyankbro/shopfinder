@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Priyank::top_level" title="Priyank" module="Priyank_Shopfinder" sortOrder="9999" resource="Magento_Backend::content"/>
+		<add id="Priyank_Shopfinder::priyank_shopfinder_shopfinder" title="Shopfinder" module="Priyank_Shopfinder" sortOrder="9999" resource="Magento_Backend::content" parent="Priyank::top_level" action="priyank_shopfinder/shopfinder/index"/>
+	</menu>
+</config>
