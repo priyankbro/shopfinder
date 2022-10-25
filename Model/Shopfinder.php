@@ -148,5 +148,21 @@ class Shopfinder extends AbstractModel implements ShopfinderInterface
     {
         return $this->setData(self::POSTAL_CODE, $postalCode);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getShopImage()
+    {
+        return $this->getData(self::SHOP_IMAGE);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setShopImage($shopImage)
+    {
+        return $this->setData(self::SHOP_IMAGE, $shopImage);
+    }
 }
 

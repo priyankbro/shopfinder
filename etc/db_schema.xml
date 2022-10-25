@@ -5,12 +5,40 @@
 		<constraint xsi:type="primary" referenceId="PRIMARY">
 			<column name="shopfinder_id"/>
 		</constraint>
-		<column name="shop_name" nullable="true" xsi:type="varchar" comment="shop_name" length="255"/>
-		<column name="identifier" nullable="true" xsi:type="varchar" comment="identifier" length="255"/>
-		<column name="address_1" nullable="true" xsi:type="text" comment="address_1"/>
-		<column name="city" nullable="true" xsi:type="text" comment="city"/>
-		<column name="country" nullable="true" xsi:type="text" comment="country"/>
-		<column name="state" nullable="true" xsi:type="text" comment="state"/>
-		<column name="postal_code" nullable="true" xsi:type="varchar" comment="postal_code" length="255"/>
+		<column name="shop_name" nullable="true" xsi:type="varchar" length="255" comment="Shop Name"/>
+		<column name="identifier" nullable="true" xsi:type="varchar" length="255" comment="Identifier"/>
+		<column name="address_1" nullable="true" xsi:type="varchar" length="255" comment="Address 1"/>
+		<column name="address_2" nullable="true" xsi:type="varchar" length="255" comment="Address 2"/>
+		<column name="city" nullable="true" xsi:type="varchar" length="255" comment="City"/>
+		<column name="country" nullable="true" xsi:type="varchar" length="255" comment="Country"/>
+		<column name="state" nullable="true" xsi:type="varchar" length="255" comment="State"/>
+		<column name="postal_code" nullable="true" xsi:type="varchar" length="255" comment="Postal Code"/>
+		<column name="phone_number" nullable="true" xsi:type="varchar" length="255" comment="Phone Number"/>
+		<column name="lat" nullable="true" xsi:type="varchar" length="255" comment="Latitude"/>
+		<column name="long" nullable="true" xsi:type="varchar" length="255" comment="Longitude"/>
+		<column name="email" nullable="true" xsi:type="varchar" length="255" comment="Email"/>
+		<column name="shop_image" nullable="false" xsi:type="varchar" comment="shop image" length="255"/>
+		<column name="status" nullable="false" xsi:type="smallint" default="0" comment="Status"/>
+		<column name="can_collect" nullable="false" xsi:type="smallint" default="0" comment="Can Collect"/>
+		<column name="shop_description" nullable="false" xsi:type="text" comment="Shop Description"/>
+		<column name="shop_time" nullable="false" xsi:type="text" comment="Shop Time Information"/>
+		<column name="created_at" on_update="false"  nullable="false" xsi:type="timestamp" default="CURRENT_TIMESTAMP" comment="Shop Creation Time"/>
+		<column name="updated_at" on_update="true" nullable="false" xsi:type="timestamp" default="CURRENT_TIMESTAMP" comment="Shop Modification Time"/>
+	</table>
+	<table name="priyank_shopfinder_store" resource="default" engine="innodb" comment="Shopfinder To Store Linkage Table">
+		<column xsi:type="int" name="shop_id" unsigned="true" nullable="false"/>
+		<column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" identity="false"
+				comment="Store ID"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="shop_id"/>
+			<column name="store_id"/>
+		</constraint>
+		<constraint xsi:type="foreign" referenceId="SHOP_STORE_SHOP_ID_SHOP_SHOP_ID" table="priyank_shopfinder_store"
+					column="shop_id" referenceTable="priyank_shopfinder_shopfinder" referenceColumn="shopfinder_id" onDelete="CASCADE"/>
+		<constraint xsi:type="foreign" referenceId="SHOP_STORE_STORE_ID_STORE_STORE_ID" table="priyank_shopfinder_store"
+					column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+		<index referenceId="SHOP_STORE_STORE_ID" indexType="btree">
+			<column name="store_id"/>
+		</index>
 	</table>
 </schema>

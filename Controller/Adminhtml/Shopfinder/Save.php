@@ -7,22 +7,30 @@ declare(strict_types=1);
 
 namespace Priyank\Shopfinder\Controller\Adminhtml\Shopfinder;
 
+use Priyank\Shopfinder\Model\Shopfinder;
 use Magento\Framework\Exception\LocalizedException;
 
 class Save extends \Magento\Backend\App\Action
 {
 
     protected $dataPersistor;
+    /**
+     * @var Shopfinder
+     */
+    private $shopfinder;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * @param Shopfinder $shopfinder
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
+        Shopfinder $shopfinder
     ) {
         $this->dataPersistor = $dataPersistor;
+        $this->shopfinder = $shopfinder;
         parent::__construct($context);
     }
 
@@ -30,6 +38,7 @@ class Save extends \Magento\Backend\App\Action
      * Save action
      *
      * @return \Magento\Framework\Controller\ResultInterface
+     * @throws LocalizedException
      */
     public function execute()
     {
@@ -39,14 +48,19 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             $id = $this->getRequest()->getParam('shopfinder_id');
         
-            $model = $this->_objectManager->create(\Priyank\Shopfinder\Model\Shopfinder::class)->load($id);
+            $model = $this->shopfinder->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Shopfinder no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
         
             $model->setData($data);
-        
+
+            if (isset($data['shop_image'][0]['name']) && !empty($data['shop_image'][0]['name'])) {
+                $shopImage = $data['shop_image'][0]['name'];
+                $model->setShopImage($shopImage);
+            }
+
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Shopfinder.'));

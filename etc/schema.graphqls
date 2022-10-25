@@ -1,0 +1,22 @@
+type Query {
+    shops (
+        pageSize: Int = 20 @doc(description: "Query by pageSize."),
+        currentPage: Int = 1 @doc(description: "Query by currentPage.")
+    ) : Shops @resolver( class: "Priyank\\Shopfinder\\Model\\Resolver\\Shops") @doc(description: "Query by get all shops.")
+    shop (
+        identifier: String @doc(description: "Query by identifier.")
+    ) : Shop @resolver( class: "Priyank\\Shopfinder\\Model\\Resolver\\Shop") @doc(description: "Query by get single shop by identifier.")
+}
+
+type Shops {
+    items: [Shop]
+}
+
+type Shop {
+    shop_name  : String  @doc(description: "Query by name.")
+    identifier  : String  @doc(description: "Query by Identifier.")
+    country  : String  @doc(description: "Query by country.")
+    shop_image  : String  @doc(description: "Query by image.")
+    longitude  : String  @doc(description: "Query by longitude.")
+    latitude  : String  @doc(description: "Query by latitude.")
+}

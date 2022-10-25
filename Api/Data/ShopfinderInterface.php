@@ -18,6 +18,7 @@ interface ShopfinderInterface
     const SHOPFINDER_ID = 'shopfinder_id';
     const SHOP_NAME = 'shop_name';
     const CITY = 'city';
+    const SHOP_IMAGE = 'shop_image';
 
     /**
      * Get shopfinder_id
@@ -122,5 +123,18 @@ interface ShopfinderInterface
      * @return \Priyank\Shopfinder\Shopfinder\Api\Data\ShopfinderInterface
      */
     public function setPostalCode($postalCode);
+
+    /**
+     * Get shop_image
+     * @return string|null
+     */
+    public function getShopImage();
+
+    /**
+     * Set postal_code
+     * @param string $shopImage
+     * @return \Priyank\Shopfinder\Shopfinder\Api\Data\ShopfinderInterface
+     */
+    public function setShopImage($shopImage);
 }
 

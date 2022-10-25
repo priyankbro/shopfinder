@@ -48,10 +48,10 @@
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">shop_name</label>
+				<label translate="true">Shop Name</label>
 				<dataScope>shop_name</dataScope>
 				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
 				</validation>
 			</settings>
 		</field>
@@ -63,14 +63,15 @@
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">identifier</label>
+				<label translate="true">Identifier</label>
 				<dataScope>identifier</dataScope>
 				<validation>
 					<rule name="required-entry" xsi:type="boolean">false</rule>
+					<rule name="no-marginal-whitespace" xsi:type="boolean">true</rule>
 				</validation>
 			</settings>
 		</field>
-		<field name="address_1" formElement="textarea" sortOrder="30">
+		<field name="address_1" formElement="input" sortOrder="30">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
 					<item name="source" xsi:type="string">Shopfinder</item>
@@ -78,14 +79,14 @@
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">address_1</label>
+				<label translate="true">Address</label>
 				<dataScope>address_1</dataScope>
 				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
 				</validation>
 			</settings>
 		</field>
-		<field name="city" formElement="textarea" sortOrder="50">
+		<field name="address_2" formElement="input" sortOrder="40">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
 					<item name="source" xsi:type="string">Shopfinder</item>
@@ -93,14 +94,44 @@
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">city</label>
+				<dataScope>address_2</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="city" formElement="input" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">City</label>
 				<dataScope>city</dataScope>
 				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
 				</validation>
 			</settings>
 		</field>
-		<field name="country" formElement="textarea" sortOrder="60">
+		<field name="country">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Directory\Model\Config\Source\Country</item>
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Country</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">number</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="dataScope" xsi:type="string">country</item>
+					<item name="sortOrder" xsi:type="number">60</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="state" formElement="input" sortOrder="70">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
 					<item name="source" xsi:type="string">Shopfinder</item>
@@ -108,25 +139,10 @@
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">country</label>
-				<dataScope>country</dataScope>
-				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
-				</validation>
-			</settings>
-		</field>
-		<field name="state" formElement="textarea" sortOrder="70">
-			<argument name="data" xsi:type="array">
-				<item name="config" xsi:type="array">
-					<item name="source" xsi:type="string">Shopfinder</item>
-				</item>
-			</argument>
-			<settings>
-				<dataType>text</dataType>
-				<label translate="true">state</label>
+				<label translate="true">State/Province</label>
 				<dataScope>state</dataScope>
 				<validation>
-					<rule name="required-entry" xsi:type="boolean">false</rule>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
 				</validation>
 			</settings>
 		</field>
@@ -138,12 +154,217 @@
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">postal_code</label>
+				<label translate="true">Postal / Zip Code</label>
 				<dataScope>postal_code</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="phone_number" formElement="input" sortOrder="90">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Phone Number</label>
+				<dataScope>phone_number</dataScope>
 				<validation>
 					<rule name="required-entry" xsi:type="boolean">false</rule>
 				</validation>
 			</settings>
+		</field>
+		<field name="lat" formElement="input" sortOrder="100">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Latitude</label>
+				<dataScope>lat</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="long" formElement="input" sortOrder="110">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Longitude</label>
+				<dataScope>long</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="email" formElement="input" sortOrder="120">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Email</label>
+				<dataScope>email</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="shop_image" formElement="imageUploader" sortOrder="130">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="formElement" xsi:type="string">imageUploader</item>
+					<item name="previewTmpl" xsi:type="string">Magento_Catalog/image-preview</item>
+					<item name="elementTmpl" xsi:type="string">ui/form/element/uploader/uploader</item>
+					<item name="isMultipleFiles" xsi:type="boolean">false</item>
+					<item name="dataScope" xsi:type="string">shop_image</item>
+					<item name="allowedExtensions" xsi:type="string">jpg jpeg png</item>
+					<item name="uploaderConfig" xsi:type="array">
+						<item name="url" xsi:type="url" path="priyank_shopfinder/shopfinder/upload"/>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Shop Image</label>
+				<dataScope>documents</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="status">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Priyank\Shopfinder\Model\Config\Source\Status</item>
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Can Collect</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">number</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="dataScope" xsi:type="string">status</item>
+					<item name="sortOrder" xsi:type="number">140</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="can_collect">
+			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Priyank\Shopfinder\Model\Config\Source\Status</item>
+				<item name="config" xsi:type="array">
+					<item name="label" xsi:type="string" translate="true">Can Collect</item>
+					<item name="visible" xsi:type="boolean">true</item>
+					<item name="dataType" xsi:type="string">number</item>
+					<item name="formElement" xsi:type="string">select</item>
+					<item name="dataScope" xsi:type="string">can_collect</item>
+					<item name="sortOrder" xsi:type="number">150</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+		</field>
+		<field name="shop_description" sortOrder="160" formElement="wysiwyg" template="ui/form/field">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+						<item name="toggle_button" xsi:type="boolean">true</item>
+						<item name="height" xsi:type="string">200px</item>
+						<item name="add_variables" xsi:type="boolean">true</item>
+						<item name="add_widgets" xsi:type="boolean">true</item>
+						<item name="add_images" xsi:type="boolean">true</item>
+						<item name="add_directives" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Shop Description</label>
+				<dataScope>shop_description</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<wysiwyg>
+					<settings>
+						<rows>5</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+		<field name="shop_time" sortOrder="170" formElement="wysiwyg" template="ui/form/field">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="is_pagebuilder_enabled" xsi:type="boolean">false</item>
+						<item name="toggle_button" xsi:type="boolean">true</item>
+						<item name="height" xsi:type="string">200px</item>
+						<item name="add_variables" xsi:type="boolean">true</item>
+						<item name="add_widgets" xsi:type="boolean">true</item>
+						<item name="add_images" xsi:type="boolean">true</item>
+						<item name="add_directives" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Shop Open Time Information</label>
+				<dataScope>shop_time</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<wysiwyg>
+					<settings>
+						<rows>5</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+		<field name="store_id" formElement="multiselect" class="Magento\Store\Ui\Component\Form\Field\StoreView">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Shopfinder</item>
+					<item name="default" xsi:type="number">0</item>
+				</item>
+			</argument>
+			<settings>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+				<dataType>int</dataType>
+				<tooltip>
+					<link>https://docs.magento.com/user-guide/configuration/scope.html</link>
+					<description>What is this?</description>
+				</tooltip>
+				<label translate="true">Store View</label>
+				<dataScope>store_id</dataScope>
+			</settings>
+			<formElements>
+				<multiselect>
+					<settings>
+						<options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+					</settings>
+				</multiselect>
+			</formElements>
 		</field>
 	</fieldset>
 </form>

@@ -3,12 +3,20 @@
 	<preference for="Priyank\Shopfinder\Api\ShopfinderRepositoryInterface" type="Priyank\Shopfinder\Model\ShopfinderRepository"/>
 	<preference for="Priyank\Shopfinder\Api\Data\ShopfinderInterface" type="Priyank\Shopfinder\Model\Shopfinder"/>
 	<preference for="Priyank\Shopfinder\Api\Data\ShopfinderSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-	<virtualType name="Priyank\Shopfinder\Model\ResourceModel\Shopfinder\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+<!--	<virtualType name="Priyank\Shopfinder\Model\ResourceModel\Shopfinder\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">-->
+<!--		<arguments>-->
+<!--			<argument name="mainTable" xsi:type="string">priyank_shopfinder_shopfinder</argument>-->
+<!--			<argument name="resourceModel" xsi:type="string">Priyank\Shopfinder\Model\ResourceModel\Shopfinder\Collection</argument>-->
+<!--		</arguments>-->
+<!--	</virtualType>-->
+	<type name="Priyank\Shopfinder\Model\ResourceModel\Shopfinder\Grid\Collection">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">priyank_shopfinder_shopfinder</argument>
-			<argument name="resourceModel" xsi:type="string">Priyank\Shopfinder\Model\ResourceModel\Shopfinder\Collection</argument>
+			<argument name="eventPrefix" xsi:type="string">shopfinder_grid_collection</argument>
+			<argument name="eventObject" xsi:type="string">shop_grid_collection</argument>
+			<argument name="resourceModel" xsi:type="string">Priyank\Shopfinder\Model\ResourceModel\Shopfinder</argument>
 		</arguments>
-	</virtualType>
+	</type>
 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
 		<arguments>
 			<argument name="collections" xsi:type="array">
@@ -16,4 +24,34 @@
 			</argument>
 		</arguments>
 	</type>
+	<type name="Priyank\Shopfinder\Controller\Adminhtml\Shopfinder\Upload">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">ShopImageObject</argument>
+		</arguments>
+	</type>
+	<type name="Priyank\Shopfinder\Model\ResourceModel\Shopfinder">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">ShopImageObject</argument>
+		</arguments>
+	</type>
+	<virtualType name="ShopImageObject" type="Priyank\Shopfinder\Model\ImageUploader">
+		<arguments>
+			<argument name="baseTmpPath" xsi:type="string">shopfinder/tmp</argument>
+			<argument name="basePath" xsi:type="string">shopfinder/image</argument>
+			<argument name="allowedExtensions" xsi:type="array">
+				<item name="jpg" xsi:type="string">jpg</item>
+				<item name="jpeg" xsi:type="string">jpeg</item>
+				<item name="gif" xsi:type="string">gif</item>
+				<item name="png" xsi:type="string">png</item>
+				<item name="pdf" xsi:type="string">pdf</item>
+			</argument>
+			<argument name="allowedMimeTypes" xsi:type="array">
+				<item name="jpg" xsi:type="string">image/jpg</item>
+				<item name="jpeg" xsi:type="string">image/jpeg</item>
+				<item name="gif" xsi:type="string">image/gif</item>
+				<item name="png" xsi:type="string">image/png</item>
+				<item name="pdf" xsi:type="string">file/pdf</item>
+			</argument>
+		</arguments>
+	</virtualType>
 </config>

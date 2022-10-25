@@ -1,6 +1,6 @@
 # Priyank Shopfinder
 
-    `composer require priyankbro/shopfinder`
+    `composer require priyank/shopfinder`
 
  - [Main Functionalities](#markdown-header-main-functionalities)
  - [Installation](#markdown-header-installation)

@@ -14,7 +14,7 @@
 			<button name="add">
 				<url path="*/*/new"/>
 				<class>primary</class>
-				<label translate="true">Add new Shopfinder</label>
+				<label translate="true">Add Shop</label>
 			</button>
 		</buttons>
 	</settings>
@@ -39,7 +39,29 @@
 		</settings>
 		<bookmark name="bookmarks"/>
 		<columnsControls name="columns_controls"/>
-		<filters name="listing_filters"/>
+		<filters name="listing_filters">
+			<settings>
+				<templates>
+					<filters>
+						<select>
+							<param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+							<param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+						</select>
+					</filters>
+				</templates>
+			</settings>
+			<filterSelect name="store_id" provider="${ $.parentName }">
+				<settings>
+					<captionValue>0</captionValue>
+					<options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+					<label translate="true">Store View</label>
+					<dataScope>store_id</dataScope>
+					<imports>
+						<link name="visible">ns = ${ $.ns }, index = ${ $.index }:visible</link>
+					</imports>
+				</settings>
+			</filterSelect>
+		</filters>
 		<paging name="listing_paging"/>
 	</listingToolbar>
 	<columns name="priyank_shopfinder_shopfinder_columns">
@@ -71,7 +93,7 @@
 		</selectionsColumn>
 		<column name="shopfinder_id">
 			<settings>
-				<filter>text</filter>
+				<filter>textRange</filter>
 				<sorting>asc</sorting>
 				<label translate="true">ID</label>
 			</settings>
@@ -79,13 +101,64 @@
 		<column name="shop_name">
 			<settings>
 				<filter>text</filter>
-				<label translate="true">shop_name</label>
+				<label translate="true">Name</label>
 				<editor>
 					<editorType>text</editorType>
 					<validation>
 						<rule name="required-entry" xsi:type="boolean">false</rule>
 					</validation>
 				</editor>
+			</settings>
+		</column>
+		<column name="identifier">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Identifier</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="status" component="Magento_Ui/js/grid/columns/select">
+			<settings>
+				<filter>select</filter>
+				<options class="Priyank\Shopfinder\Model\Config\Source\Status"/>
+				<dataType>select</dataType>
+				<visible>true</visible>
+				<label translate="true">Status</label>
+			</settings>
+		</column>
+		<column name="can_collect" component="Magento_Ui/js/grid/columns/select">
+			<settings>
+				<filter>select</filter>
+				<options class="Priyank\Shopfinder\Model\Config\Source\Status"/>
+				<dataType>select</dataType>
+				<visible>true</visible>
+				<label translate="true">Can Collect</label>
+			</settings>
+		</column>
+		<column name="store_id" class="Magento\Store\Ui\Component\Listing\Column\Store">
+			<settings>
+				<label translate="true">Store View</label>
+				<bodyTmpl>ui/grid/cells/html</bodyTmpl>
+				<sortable>false</sortable>
+			</settings>
+		</column>
+		<column name="created_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+			<settings>
+				<filter>dateRange</filter>
+				<dataType>date</dataType>
+				<label translate="true">Created</label>
+			</settings>
+		</column>
+		<column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date" component="Magento_Ui/js/grid/columns/date">
+			<settings>
+				<filter>dateRange</filter>
+				<dataType>date</dataType>
+				<label translate="true">Modified</label>
 			</settings>
 		</column>
 		<actionsColumn name="actions" class="Priyank\Shopfinder\Ui\Component\Listing\Column\ShopfinderActions">
@@ -95,67 +168,5 @@
 				<resizeDefaultWidth>107</resizeDefaultWidth>
 			</settings>
 		</actionsColumn>
-		<column name="identifier">
-			<settings>
-				<filter>text</filter>
-				<label translate="true">identifier</label>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="address_1">
-			<settings>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="city">
-			<settings>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="country">
-			<settings>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="state">
-			<settings>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
-		<column name="postal_code">
-			<settings>
-				<editor>
-					<editorType>text</editorType>
-					<validation>
-						<rule name="required-entry" xsi:type="boolean">false</rule>
-					</validation>
-				</editor>
-			</settings>
-		</column>
 	</columns>
 </listing>
