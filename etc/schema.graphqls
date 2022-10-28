@@ -15,8 +15,27 @@ type Shops {
 type Shop {
     shop_name  : String  @doc(description: "Query by name.")
     identifier  : String  @doc(description: "Query by Identifier.")
+    address1: String @doc(description: "Address Line 1")
     country  : String  @doc(description: "Query by country.")
-    shop_image  : String  @doc(description: "Query by image.")
     longitude  : String  @doc(description: "Query by longitude.")
     latitude  : String  @doc(description: "Query by latitude.")
+}
+
+type Mutation {
+    shopfinderSubmit(input: ShopfinderInput!): ShopfinderOutput @resolver(class: "\\Priyank\\Shopfinder\\Model\\Resolver\\SaveShop") @doc(description:"Save Shop")
+}
+
+input ShopfinderInput {
+    shop_name: String @doc(description: "Shop Name")
+    identifier: String @doc(description: "identifier")
+    address_1: String @doc(description: "Address Line 1")
+    postal_code: String @doc(description: "postal_code")
+    state: String @doc(description: "state")
+    country: String @doc(description: "Country")
+    longitude: String @doc(description: "Shop Longitude")
+    latitude: String @doc(description: "Shop Latitude")
+}
+
+type ShopfinderOutput {
+    success_message: String @doc(description: "Success Message")
 }

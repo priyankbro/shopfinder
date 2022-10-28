@@ -24,10 +24,4 @@
 			<resource ref="Priyank_Shopfinder::Shopfinder_update"/>
 		</resources>
 	</route>
-	<route url="/V1/priyank-shopfinder/shopfinder/:shopfinderId" method="DELETE">
-		<service class="Priyank\Shopfinder\Api\ShopfinderRepositoryInterface" method="deleteById"/>
-		<resources>
-			<resource ref="Priyank_Shopfinder::Shopfinder_delete"/>
-		</resources>
-	</route>
 </routes>

@@ -218,6 +218,7 @@
 				<dataScope>email</dataScope>
 				<validation>
 					<rule name="required-entry" xsi:type="boolean">false</rule>
+					<rule name="validate-email" xsi:type="boolean">true</rule>
 				</validation>
 			</settings>
 		</field>

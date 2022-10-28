@@ -8,7 +8,7 @@ use Magento\Framework\GraphQl\Query\ResolverInterface;
 use Magento\Framework\GraphQl\Schema\Type\ResolveInfo;
 use Magento\Framework\GraphQl\Config\Element\Field;
 
-class Shops implements ResolverInterface
+class SaveShop implements ResolverInterface
 {
 
     private $shopsDataProvider;
@@ -31,7 +31,7 @@ class Shops implements ResolverInterface
         array $value = null,
         array $args = null
     ) {
-        $shopsData = $this->shopsDataProvider->getShops($args);
+        $shopsData = $this->shopsDataProvider->saveShop($args);
         return [
             'items' => $shopsData
 
